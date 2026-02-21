@@ -66,4 +66,4 @@ group :test do
 end
 
 gem "nokogiri"
-gem "rubyzip", "~> 2.3"
+gem "rubyzip", "~> 3.2"
