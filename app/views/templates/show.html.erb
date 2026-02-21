@@ -1,0 +1,30 @@
+<h1>Fill placeholders</h1>
+
+<p>
+  Template:
+  <strong><%= @template.docx.filename.to_s %></strong>
+</p>
+
+<% if @placeholders.empty? %>
+  <p>No placeholders found (format expected: {{PLACEHOLDER}}).</p>
+<% else %>
+  <%= form_with url: generate_template_path(@template), method: :post, data: { turbo: false } do %>
+    <% @placeholders.each do |ph| %>
+      <div style="margin-bottom: 10px;">
+        <label for="values_<%= ph %>"><%= ph %></label><br>
+        <input
+          id="values_<%= ph %>"
+          name="values[<%= ph %>]"
+          type="text"
+          style="width: 420px;"
+        />
+      </div>
+    <% end %>
+
+    <%= submit_tag "Generate Document" %>
+  <% end %>
+<% end %>
+
+<p style="margin-top: 20px;">
+  <%= link_to "Upload another", root_path %>
+</p>

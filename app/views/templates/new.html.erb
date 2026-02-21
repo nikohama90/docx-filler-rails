@@ -1,0 +1,24 @@
+<h1>DOCX Placeholder Filler</h1>
+
+<% if flash[:alert].present? %>
+  <div style="padding:10px; margin:10px 0; border:1px solid #c00;">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<% if flash[:notice].present? %>
+  <div style="padding:10px; margin:10px 0; border:1px solid #090;">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<%= form_with model: @template, url: templates_path, multipart: true, data: { turbo: false } do |f| %>
+  <div>
+    <%= f.label :docx, "Upload .docx template" %><br>
+    <%= f.file_field :docx, accept: ".docx" %>
+  </div>
+
+  <div style="margin-top: 12px;">
+    <%= f.submit "Upload" %>
+  </div>
+<% end %>
